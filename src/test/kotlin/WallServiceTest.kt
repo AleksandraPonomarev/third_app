@@ -28,6 +28,6 @@ class WallServiceTest {
         val id = 99999
         val post = Post(text = "обновленный пост", id = id)
         val result = servicenew.update(post)
-        assertEquals(result, true)
+        assertEquals(result, false)
     }
 }
