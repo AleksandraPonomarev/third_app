@@ -2,7 +2,7 @@ object WallService {
     val service = mutableListOf<Post>()
     fun add(post: Post): Post {
         val size = service.size
-        val postNew = post.copy(id = size)
+        val postNew = post.copy(id = size+1)
         service.add(postNew)
         return service.last()
     }
