@@ -15,7 +15,8 @@ object WallService {
         }
         val index = arrId.indexOf(postId)
         return if (index != -1){
-            service[index] = post
+            val postNew = post.copy(fromId = service[index].fromId, date = service[index].date)
+            service[index] = postNew
             true
         }
         else false
@@ -24,38 +25,35 @@ object WallService {
 
 data class Post(
     val id: Int = 0,
-    val ownerId: Int? = null,
-    val fromId: Int? = null,
-    val createdBy: Int? = null,
-    val date: Int? = null,
+    val ownerId: Int,
+    val fromId: Int,
+    val createdBy: Int,
+    val date: Int,
     val text: String,
-    val replyOwnerId: Int? = null,
-    val replyPostId: Int? = null,
-    val friendsOnly: Boolean? = null,
-    val comments: Comments? = null,
-    val copyright: Copyright? = null,
-    val likes: Likes? = null,
-    val reposts: Reposts? = null,
-    val views: Views? = null,
-    val postType: Unit? = null,
-    val signerId: Int? = null,
-    val canPin: Boolean? = null,
-    val canDelete: Boolean? = null,
-    val canEdit: Boolean? = null,
-    val isPinned: Boolean? = null,
-    val markedAsAds: Boolean? = null,
-    val isFavorite: Boolean? = null,
-    val donut: Donut? = null,
-    val postponedId:Int? = null
+    val replyOwnerId: Int,
+    val replyPostId: Int,
+    val friendsOnly: Boolean,
+    val comments: Comments,
+    val copyright: Copyright?,
+    val likes: Likes,
+    val reposts: Reposts,
+    val views: Views,
+    val postType: Unit,
+    val signerId: Int,
+    val canPin: Boolean,
+    val canDelete: Boolean,
+    val canEdit: Boolean,
+    val isPinned: Boolean,
+    val markedAsAds: Boolean,
+    val isFavorite: Boolean,
+    val donut: Donut,
+    val postponedId:Int
 )
-//{
-  //  val id: Int get() = hashCode()
-//}
 data class Comments(
     val count: Int,
     val canPost: Boolean,
     val groupsCanPost: Boolean,
-    val CanClose: Boolean,
+    val canClose: Boolean,
     val canOpen: Boolean
 )
 
