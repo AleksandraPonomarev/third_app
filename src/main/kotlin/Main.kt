@@ -30,7 +30,7 @@ fun main(){
         views= Views(
             count = 0
         ),
-        postType = Unit,
+        postType = 1,
         signerId=111,
         canPin = true,
         canDelete = true,
@@ -42,7 +42,7 @@ fun main(){
             isDonut = false,
             paidDuration = 0,
             placeholder = Placeholder(
-                all = Unit,
+                all = 1,
                 duration = 0
             ),
             canPublishFreeCopy = true,
@@ -52,12 +52,13 @@ fun main(){
     )
     val servicenew = WallService
     servicenew.add(post)
-    val postTwo = post.copy(text = "обновленный пост", fromId = 121, date =55)
+    val postTwo = post.copy(text = "обновленный пост1", fromId = 121, date =55)
     val test = servicenew.add(postTwo)
-    var id = servicenew.service[1].id
-    //val id= 99999
-    val postNew = post.copy(text = "обновленный пост", id = id, fromId = 1, date = 1)
+    println("${servicenew.service}")
+    //var id = servicenew.service[1].id
+    val id= 99999
+    val postNew = post.copy(text = "обновленный пост44", id = id, fromId = 1, date = 1, ownerId = 88)
     val result = servicenew.update(postNew)
-    println("$result")
+    println("результат обновления поста $result")
     println("${servicenew.service}")
 }

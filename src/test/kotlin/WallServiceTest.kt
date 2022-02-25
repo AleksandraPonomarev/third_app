@@ -35,7 +35,7 @@ class WallServiceTest {
         views= Views(
             count = 0
         ),
-        postType = Unit,
+        postType = 1,
         signerId=111,
         canPin = true,
         canDelete = true,
@@ -47,7 +47,7 @@ class WallServiceTest {
             isDonut = false,
             paidDuration = 0,
             placeholder = Placeholder(
-                all = Unit,
+                all = 1,
                 duration = 0
             ),
             canPublishFreeCopy = true,
