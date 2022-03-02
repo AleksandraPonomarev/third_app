@@ -25,8 +25,109 @@ data class Post(
     var postponedId:Int = 1,
     var postSource: PostSource = PostSource(),
     var geo: Geo = Geo(),
-    var copyHistory: Array<Any> = emptyArray()
+    var copyHistory: Array<Any> = emptyArray(),
+    var attachment: Array<Attachment> = emptyArray()
 )
+open class Attachment(open val type: String)
+
+class GiftAttachment: Attachment("gift"){
+    override val type = "gift"
+    val gift: Gift = Gift()
+}
+class Gift(
+    val id: Int=0,
+    val thumb256: String = "",
+    val thumb96: String = "",
+    val thumb48: String = ""
+)
+class GraffitiAttachment: Attachment("giraffiti"){
+    override val type = "giraffiti"
+    val graffiti: GraffitiLink = GraffitiLink()
+}
+class GraffitiLink(
+    val id: Int=0,
+    val ownerId: Int=0,
+    val url: String = "",
+    val width: Int=0,
+    val height: Int=0
+)
+
+class AudioAttachment: Attachment("audio"){
+    override val type = "audio"
+    val audio: Audio = Audio()
+}
+class Audio(
+    val id: Int = 0,
+    val owner_id: Int = 0,
+    val artist: String = "",
+    val title: String = "",
+    val duration: Int = 0,
+    val url: String = "",
+    val lyrics_id: Int = 0,
+    val album_id: Int = 0,
+    val genre_id: Int = 0,
+    val date: Int = 0,
+    val no_search: Int = 0,
+    val is_hq: Int = 0
+)
+class FileAttachment: Attachment("file"){
+    override val type = "file"
+    val file: File = File()
+}
+class File(
+    val id: Int = 0,
+    val owner_id: Int = 0,
+    val title: String = "",
+    val size: Int = 0,
+    val ext: String = "",
+    val url: String = "",
+    val date: Int = 0,
+    val type: Int = 0,
+    val preview: Preview = Preview(),
+    val no_search: Int = 0,
+    val is_hq: Int = 0
+)
+data class Preview(
+    val photo: Photo? = Photo(),
+    val graffiti: Graffiti? = Graffiti(),
+    val audioMessage: AudioMessage? = AudioMessage()
+)
+data class Photo(
+    val size: Array<Int> = emptyArray()
+)
+data class Graffiti(
+    val src: String = "",
+    val width: Int = 0,
+    val height: Int = 0
+)
+data class AudioMessage(
+    val duration: Int = 0,
+    val waveform: Array<Int> = emptyArray(),
+    val linkOgg: String = "",
+    val linkMp3: String = ""
+)
+class AttachedLinkAttachment: Attachment("link"){
+    override val type = "link"
+    val link: Link = Link()
+}
+class Link(
+    val url: String = "",
+    val title: String = "",
+    val caption: String = "",
+    val description: String = "",
+    val photo: Photo? = Photo(),
+    val product: Product? = Product(),
+    val button: Button? = Button(),
+    val previewPage: String = "",
+    val previewUrl: String = ""
+)
+data class Product(
+    val price: Int = 0
+)
+data class Button(
+    val button: Int =0
+)
+
 data class Comments(
     val count: Int = 0,
     val canPost: Boolean = true,
