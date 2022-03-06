@@ -81,4 +81,29 @@ class WallServiceTest {
         val result = servicenew.update(postNew)
         assertEquals(result, false)
     }
+    @Test
+    fun comment(){
+        val servicenew = WallService
+        servicenew.add(post)
+        val id = servicenew.add(post).id
+        val comment = Comment(
+            id = 1,
+            postId = id,
+            text = "Новый комментарий"
+        )
+        servicenew.createComment(comment)
+        val text = servicenew.comments[0].text
+        assertEquals(text, "Новый комментарий")
+    }
+    @Test (expected = WallService.NotFoundException::class)
+    fun commentFailed(){
+        val servicenew = WallService
+        servicenew.add(post)
+        val comment = Comment(
+            id = 1,
+            postId = 9999,
+            text = "Новый комментарий"
+        )
+        servicenew.createComment(comment)
+    }
 }
