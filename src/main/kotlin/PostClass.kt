@@ -197,3 +197,27 @@ data class PostSource(
     val data: String = "",
     val url: String = ""
 )
+data class Comment(
+    val id: Int,
+    val postId: Int,
+    val fromId: Int = 0,
+    val date: Int = 0,
+    val text: String,
+    val donut: DonutComment = DonutComment(),
+    val replyToUser: Int = 0,
+    val replyToComment: Int = 0,
+    val attachments: Array<Attachment> = emptyArray(),
+    val parentsStack: Array<Int> = emptyArray(),
+    val thread: Thread = Thread()
+)
+data class Thread(
+    val count: Int = 0,
+    val items: Array<Any> = emptyArray(),
+    val can_post: Boolean = true,
+    val show_reply_button: Boolean = true,
+    val groups_can_post: Boolean = true
+)
+data class DonutComment(
+    val is_don: Boolean = false,
+    val placeholder: String = ""
+)
